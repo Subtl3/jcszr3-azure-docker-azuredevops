@@ -3,15 +3,25 @@
 Zapoznaj się z komendami Docker CLI:
 
 `docker run [konto/repo]:[tag]` - Uruchomienie obrazu w tle
+
 `docker run -p [Port_Hosta]:[Port_Kontenera] [Obraz]`
+
 `docker images` - Wyświetlenie listy obrazów
+
 `docker rmi` - Usunięcie obrazu
+
 `docker build [ścieżka]` - Budowanie obrazu na podstawie dockerfile - ścieżka musi być podana do miejsca gdzie znajduje się dockerfile
+
 `docker ps` - Lista uruchomionych kontenerów
+
 `docker ps -a` - Lista wszystkich kontenerów
+
 `docker rm [id_kontenera]` - Usunięcie kontenera - UWAGA: usunięcie uruchomionego kontenera nie zadziała. Należy go wcześniej zastopować.
+
 `docker stop [id_kontenera]` - Zatrzymanie kontenera
+
 `docker system prune --all --volumes` - Usunięcie całej nieużywanej zawartości dockera.
+
 
 # Ćwiczenie 2.
 
