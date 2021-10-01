@@ -65,6 +65,15 @@ Wykonaj konteneryzację aplikacji i uruchom aplikację w kontenerze z poziomu do
 
 *Zastanów się* - czy możemy zoptymalizować podane kroki?
 
+2. Zbuduj aplikację komendą `docker build .`
+3. Upewnij się czy aplikacja została zbudowana: `docker images`
+4. Wystartuj aplikację: `docker run [IMAGE_ID] -d`
+5. Sprawdź czy aplikacja chodzi `docker ps -a`
+6. Spróbuj się połączyć z aplikacją. Czy taki był Twój oczekiwany rezultat?
+7. Zastopuj i usuń kontener (z pomocą przyjdzie ściąga z pkt 1)
+8. Uruchom ponownie kontener za pomocą `docker run -d -p 8080:80 -p 8081:443 --name=FootballHub [IMAGE_ID]`
+
+
 # Ćwiczenie 3.
 
 Wykonaj komendę git pull. Na repozytorium powinien pojawić się podstawowy plik docker-compose. Pobierz go, uruchom i zastanów się jak działa. Dodaj do niego bazę danych mssql i uruchom.
