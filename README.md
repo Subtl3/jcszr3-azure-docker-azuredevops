@@ -31,6 +31,44 @@ Wykonaj konteneryzację aplikacji i uruchom aplikację w kontenerze z poziomu do
 
 Wykonaj komendę git pull. Na repozytorium powinien pojawić się podstawowy plik docker-compose. Pobierz go, uruchom i zastanów się jak działa. Dodaj do niego bazę danych mssql i uruchom.
 
+1. Stwórz plik Dockerfile w katalogu FootballHub
+
+`FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base` - Ściągamy .net core
+
+`WORKDIR /app` - Definiujemy katalog roboczy
+
+`EXPOSE 80` - Otwieramy port 80 (domyślny dla HTTP)
+
+`EXPOSE 443` - Otwieramy port 443 (domyślny dla HTTPS)
+
+`FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build` - Ściągamy .net core sdk
+
+`WORKDIR /src` - Definiujemy katalog roboczy
+
+`COPY ["FootballHub/FootballHub.csproj", "FootballHub/"]` - Kopiujemy projekt
+
+`RUN dotnet restore "FootballHub/FootballHub.csproj"` - Ściągamy paczki nugetowe
+
+`COPY . .` - Kopiujemy zawartość folderu do katalogu roboczego w kontenerze
+
+`WORKDIR "/src/FootballHub"` - Definiujemy katalog roboczny ponownie
+
+`RUN dotnet build "FootballHub.csproj" -c Release -o /app/build` - Budujemy projekt
+
+`FROM build AS publish` - Przygotowujemy się do opublikowania projektu
+
+`RUN dotnet publish "FootballHub.csproj" -c Release -o /app/publish` - Publikujemy projekt
+
+`FROM base AS final` - Definiujemy ostatni krok
+
+`WORKDIR /app` - Wybieramy katalog roboczy
+
+`COPY --from=publish /app/publish .` - Kopiujemy
+
+`ENTRYPOINT ["dotnet", "FootballHub.dll"]` - Wykonujemy komendę startową
+
+*Zastanów się* - czy możemy zoptymalizować podane kroki?
+
 # Ćwiczenie 4.
 
 Nie wyłączając kontenerów włącz docker desktop i zapoznaj się z funkcjami Docker GUI.
