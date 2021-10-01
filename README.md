@@ -27,10 +27,6 @@ Zapoznaj się z komendami Docker CLI:
 
 Wykonaj konteneryzację aplikacji i uruchom aplikację w kontenerze z poziomu docker cli. Stwórz ręcznie plik Dockerfile, lub zastanów się, czy można zrobić to szybciej za pomocą Visual Studio.
 
-# Ćwiczenie 3.
-
-Wykonaj komendę git pull. Na repozytorium powinien pojawić się podstawowy plik docker-compose. Pobierz go, uruchom i zastanów się jak działa. Dodaj do niego bazę danych mssql i uruchom.
-
 1. Stwórz plik Dockerfile w katalogu FootballHub
 
 `FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base` - Ściągamy .net core
@@ -68,6 +64,16 @@ Wykonaj komendę git pull. Na repozytorium powinien pojawić się podstawowy pli
 `ENTRYPOINT ["dotnet", "FootballHub.dll"]` - Wykonujemy komendę startową
 
 *Zastanów się* - czy możemy zoptymalizować podane kroki?
+
+# Ćwiczenie 3.
+
+Wykonaj komendę git pull. Na repozytorium powinien pojawić się podstawowy plik docker-compose. Pobierz go, uruchom i zastanów się jak działa. Dodaj do niego bazę danych mssql i uruchom.
+
+Ściąga: https://pastebin.com/iTsJYXcm
+
+Uruchomienie:
+
+`docker-compose up -d`
 
 # Ćwiczenie 4.
 
