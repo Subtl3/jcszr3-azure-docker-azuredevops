@@ -1,0 +1,11 @@
+﻿@page
+@model FootballHub.Pages.Forms.AddClubModel
+@{
+}
+<h1>Add club</h1>
+<form method="post">
+    <input type="text" asp-for="Club.Name" placeholder="Club Name" />
+    <input type="text" asp-for="Club.League" placeholder="Club League"/>
+    <input type="number" asp-for="Club.YearFounded" placeholder="1945"/>
+    <button type="submit">Submit</button>
+</form>

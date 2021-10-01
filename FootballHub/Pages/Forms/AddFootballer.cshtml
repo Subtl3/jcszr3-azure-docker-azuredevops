@@ -1,0 +1,12 @@
+﻿@page
+@model FootballHub.Pages.Forms.AddFootballerModel
+@{
+}
+<h1>Add footballer</h1>
+<form method="post">
+    <input type="text" asp-for="Footballer.Name" placeholder="Name" />
+    <input type="text" asp-for="Footballer.Surname" placeholder="Surname" />
+    <input type="number" asp-for="Footballer.Number" placeholder="99" />
+    <input type="text" asp-for="Footballer.Position" placeholder="Position" />
+    <button type="submit">Submit</button>
+</form>
