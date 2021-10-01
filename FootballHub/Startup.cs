@@ -1,12 +1,15 @@
+using Azure.Data.Tables;
 using FootballHub.Core;
 using FootballHub.Core.Models;
 using FootballHub.Core.Repositories;
+using FootballHub.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace FootballHub
 {
@@ -29,10 +32,16 @@ namespace FootballHub
                 opts.UseSqlServer(Configuration.GetConnectionString("FootballHubContext"));
             });
 
+            services.AddSingleton<TableClient>(new TableClient(Configuration.GetConnectionString("StorageConnectionString"), "Stadium"));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddScoped<IRepository<Club>, AppRepository<Club>>();
             services.AddScoped<IRepository<Footballer>, AppRepository<Footballer>>();
+            services.AddScoped<ITableStorageRepository<Stadium>, StadiumRepository>();
+            services.AddScoped<IClubService, ClubService>();
+            services.AddScoped<IStadiumService, StadiumService>();
+            services.AddScoped<IFootballerService, FootballerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

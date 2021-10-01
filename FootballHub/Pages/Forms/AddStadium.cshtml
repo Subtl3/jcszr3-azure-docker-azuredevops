@@ -1,0 +1,9 @@
+﻿@page
+@model FootballHub.Pages.Forms.AddStadiumModel
+@{
+}
+<form method="post">
+    <input type="text" asp-for="Stadium.Name" placeholder="Position" />
+    <input type="number" asp-for="Stadium.Capacity" placeholder="99" />
+    <button type="submit">Submit</button>
+</form>

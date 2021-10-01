@@ -15,8 +15,19 @@ namespace FootballHub.Core
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Club>().ToTable("Clubs");
-            modelBuilder.Entity<Footballer>().ToTable("Footballers");
+            modelBuilder.Entity<Club>(entity =>
+            {
+                entity.HasIndex(e => e.Name);
+
+                entity.ToTable("clubs");
+                entity.Property(e => e.Name)
+                    .HasColumnName("Name");
+                entity.Property(e => e.League)
+                    .HasColumnName("League");
+                entity.Property(e => e.YearFounded)
+                    .HasColumnName("YearFounded");
+            });
+            modelBuilder.Entity<Footballer>().ToTable("Footballers").HasNoKey();
         }
     }
 }
