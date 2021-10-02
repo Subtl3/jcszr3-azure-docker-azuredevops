@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  footballhub:
+    hostname: footballhub
+    container_name: footballhub
+    image: ${DOCKER_REGISTRY-}footballhub
+    build:
+      context: .
+      dockerfile: FootballHub/Dockerfile
+    ports:
+      - "2222:80"
+      - "2223:443"
+    networks:
+      - local
+
+  db:
+    hostname: db
+    container_name: db
+    image: "mcr.microsoft.com/mssql/server"
+    restart: "no"
+    environment:
+      MSSQL_SA_PASSWORD: "Your_Password_Here"
+      ACCEPT_EULA: "Y"
+    ports: 
+      - "15790:1433"
+    networks: 
+      - local
+
+networks:
+  local:
+    driver: bridge
